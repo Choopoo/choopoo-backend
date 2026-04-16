@@ -122,6 +122,14 @@ func main() {
 		// resolved tenant view (composer applies precedence)
 		v2.Get("/me/materials", handleV2MeMaterials)
 		v2.Get("/me/indicators", handleV2MeIndicators)
+
+		// goals
+		v2.Post("/goals", handleV2GoalsCreate)
+		v2.Get("/goals", handleV2GoalsList)
+		v2.Get("/goals/{id}", handleV2GoalDetail)
+		v2.Delete("/goals/{id}", handleV2GoalDelete)
+		v2.Post("/goals/{id}/indicators", handleV2GoalAddIndicator)
+		v2.Delete("/goals/{id}/indicators/{linkId}", handleV2GoalRemoveIndicator)
 	})
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
