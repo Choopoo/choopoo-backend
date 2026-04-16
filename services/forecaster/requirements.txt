@@ -1,0 +1,5 @@
+httpx==0.28.1
+psycopg2-binary==2.9.10
+pandas==2.2.3
+numpy==2.2.1
+statsforecast==2.0.0

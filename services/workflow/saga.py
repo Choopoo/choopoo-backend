@@ -154,9 +154,11 @@ def run_saga(db_conn, gateway: Gateway, event: dict) -> None:
             steps_log.append(step)
             _update_run(db_conn, run_id, current_step=i + 1, steps_log=steps_log)
 
-        # Final step: compose a briefing insight citing the indicators we attached.
+        # Final step: write a SETUP-EVENT insight (kind=event) — this is an audit
+        # receipt, NOT a market briefing. The summariser/forecaster produce the
+        # real briefing+alert insights later, as data flows in.
         if attached_indicator_codes:
-            body = _compose_briefing_body(title, attached_materials, attached_indicator_codes)
+            body = _compose_setup_body(title, attached_materials, attached_indicator_codes)
             evidence = [
                 {
                     "kind": "catalog_indicator",
@@ -166,11 +168,12 @@ def run_saga(db_conn, gateway: Gateway, event: dict) -> None:
                 for code in attached_indicator_codes
                 if _find_indicator_id(catalog_indicators, code) is not None
             ]
+            primary_subject = (attached_materials[0]["code"] if attached_materials else "goal")
             gateway.create_insight(
                 ctx,
                 goal_id=goal_id,
-                kind="briefing",
-                title=f"Autopilot first briefing — {title}",
+                kind="event",
+                title=f"Autopilot setup · {primary_subject}",
                 body_md=body,
                 ai_model="autopilot:stub",
                 evidence=evidence,
@@ -188,9 +191,9 @@ def run_saga(db_conn, gateway: Gateway, event: dict) -> None:
         _update_run(db_conn, run_id, state="failed", error=str(e), steps_log=steps_log, completed=True)
 
 
-def _compose_briefing_body(title: str, materials: list[dict], indicator_codes: list[str]) -> str:
+def _compose_setup_body(title: str, materials: list[dict], indicator_codes: list[str]) -> str:
     lines = [
-        f"Autopilot has populated this goal from the phrase: *{title}*.",
+        f"Autopilot parsed *\"{title}\"* and set up the goal.",
         "",
         "**Materials attached:**",
     ]
