@@ -149,6 +149,11 @@ func main() {
 
 		// saga observability
 		v2.Get("/workflows", handleV2WorkflowsList)
+
+		// signal aspects (info-content layer above sources)
+		v2.Get("/aspects", handleV2AspectsList)
+		v2.Get("/subjects/{code}/aspects", handleV2SubjectAspects)
+		v2.Post("/subjects/{code}/aspects/{aspectId}", handleV2ToggleSubjectAspect)
 	})
 
 	// Copilot proxy lives OUTSIDE the tenant-tx group (it's HTTP→HTTP, not DB).
