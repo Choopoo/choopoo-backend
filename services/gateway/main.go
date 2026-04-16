@@ -136,6 +136,10 @@ func main() {
 		v2.Get("/insights", handleV2InsightsList)
 		v2.Get("/insights/{id}", handleV2InsightDetail)
 		v2.Get("/me/briefing", handleV2MeBriefing)
+
+		// indicator composer + reading seed
+		v2.Get("/indicators/{code}/latest", handleV2IndicatorLatest)
+		v2.Post("/test/indicator/reading", handleV2TestIndicatorReading)
 	})
 
 	// Copilot proxy lives OUTSIDE the tenant-tx group (it's HTTP→HTTP, not DB).
