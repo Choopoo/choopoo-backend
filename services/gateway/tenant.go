@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"crypto/subtle"
 	"database/sql"
 	"fmt"
 	"net/http"
@@ -23,10 +24,24 @@ func sessionFromContext(ctx context.Context) *Session {
 	return nil
 }
 
-// resolveSession middleware loads the session cookie (if present) into context.
-// It does NOT reject missing sessions — the requireAuth middleware does that.
+// resolveSession middleware loads the session into context from one of two paths:
+//   1. X-Service-Secret + X-Org-Id/X-User-Id/X-User-Role headers (trusted internal services)
+//   2. Browser session cookie
+// It does NOT reject missing sessions — requireAuth does that.
 func resolveSession(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		// Trusted internal-service path. Constant-time compare so a wrong secret
+		// can't leak length info via timing.
+		if secret := getEnv("SERVICE_SECRET", ""); secret != "" {
+			if subtle.ConstantTimeCompare([]byte(r.Header.Get("X-Service-Secret")), []byte(secret)) == 1 {
+				if s := serviceSessionFromHeaders(r); s != nil {
+					ctx := context.WithValue(r.Context(), ctxSessionKey, s)
+					next.ServeHTTP(w, r.WithContext(ctx))
+					return
+				}
+			}
+		}
+		// Browser cookie path.
 		c, err := r.Cookie(sessionCookie)
 		if err == nil && c.Value != "" {
 			if s, err := loadSession(r.Context(), c.Value); err == nil {
@@ -36,6 +51,26 @@ func resolveSession(next http.Handler) http.Handler {
 		}
 		next.ServeHTTP(w, r)
 	})
+}
+
+// serviceSessionFromHeaders builds a synthetic session from X-Org-Id / X-User-Id /
+// X-User-Role headers. Returns nil if any required header is missing or malformed.
+func serviceSessionFromHeaders(r *http.Request) *Session {
+	orgStr := r.Header.Get("X-Org-Id")
+	userStr := r.Header.Get("X-User-Id")
+	role := r.Header.Get("X-User-Role")
+	if orgStr == "" || userStr == "" {
+		return nil
+	}
+	orgID, err1 := strconv.ParseInt(orgStr, 10, 64)
+	userID, err2 := strconv.ParseInt(userStr, 10, 64)
+	if err1 != nil || err2 != nil {
+		return nil
+	}
+	if role == "" {
+		role = "owner"
+	}
+	return &Session{UserID: userID, OrgID: orgID, Role: role}
 }
 
 // requireAuth rejects unauthenticated requests.

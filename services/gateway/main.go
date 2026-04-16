@@ -138,6 +138,9 @@ func main() {
 		v2.Get("/me/briefing", handleV2MeBriefing)
 	})
 
+	// Copilot proxy lives OUTSIDE the tenant-tx group (it's HTTP→HTTP, not DB).
+	r.With(requireAuth).Post("/api/v2/copilot/converse", handleV2CopilotConverse)
+
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
 		w.WriteHeader(http.StatusNotFound)
