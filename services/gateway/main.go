@@ -106,6 +106,22 @@ func main() {
 		v2.Get("/me", handleMe)
 		v2.Get("/results", handleV2Results)
 		v2.Post("/test/seed", handleV2TestSeed)
+
+		// catalog (browse global library)
+		v2.Get("/catalog/materials", handleV2CatalogMaterials)
+		v2.Get("/catalog/products", handleV2CatalogProducts)
+		v2.Get("/catalog/indicators", handleV2CatalogIndicators)
+
+		// tenant overlay (enable, override, private)
+		v2.Post("/tenant/materials/enable", handleV2TenantEnableMaterial)
+		v2.Post("/tenant/materials", handleV2TenantCreateMaterial)
+		v2.Post("/tenant/indicators/enable", handleV2TenantEnableIndicator)
+		v2.Post("/tenant/indicators/override", handleV2TenantOverrideIndicator)
+		v2.Post("/tenant/indicators", handleV2TenantCreateIndicator)
+
+		// resolved tenant view (composer applies precedence)
+		v2.Get("/me/materials", handleV2MeMaterials)
+		v2.Get("/me/indicators", handleV2MeIndicators)
 	})
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
