@@ -3,9 +3,7 @@ package main
 import (
 	"context"
 	"database/sql"
-	"embed"
 	"fmt"
-	"io/fs"
 	"log"
 	"net/http"
 	"os"
@@ -19,9 +17,6 @@ import (
 	"github.com/redis/go-redis/v9"
 	"github.com/segmentio/kafka-go"
 )
-
-//go:embed all:frontend
-var frontendFS embed.FS
 
 // global clients shared across handlers
 var (
@@ -91,19 +86,10 @@ func main() {
 	r.Get("/api/results", handleResults)
 	r.Get("/api/results/{id}", handleResultByID)
 
-	ui, err := fs.Sub(frontendFS, "frontend")
-	if err != nil {
-		log.Fatalf("frontend embed: %v", err)
-	}
-	fileServer := http.FileServer(http.FS(ui))
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
-		if strings.HasPrefix(r.URL.Path, "/api/") {
-			w.Header().Set("Content-Type", "application/json")
-			w.WriteHeader(http.StatusNotFound)
-			_, _ = w.Write([]byte(`{"error":"not found"}`))
-			return
-		}
-		fileServer.ServeHTTP(w, r)
+		w.Header().Set("Content-Type", "application/json")
+		w.WriteHeader(http.StatusNotFound)
+		_, _ = w.Write([]byte(`{"error":"not found"}`))
 	})
 
 	log.Println("gateway listening on :8080")
