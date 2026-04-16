@@ -130,6 +130,12 @@ func main() {
 		v2.Delete("/goals/{id}", handleV2GoalDelete)
 		v2.Post("/goals/{id}/indicators", handleV2GoalAddIndicator)
 		v2.Delete("/goals/{id}/indicators/{linkId}", handleV2GoalRemoveIndicator)
+
+		// insights + traceability
+		v2.Post("/insights", handleV2InsightCreate)
+		v2.Get("/insights", handleV2InsightsList)
+		v2.Get("/insights/{id}", handleV2InsightDetail)
+		v2.Get("/me/briefing", handleV2MeBriefing)
 	})
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
