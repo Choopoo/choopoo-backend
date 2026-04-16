@@ -73,6 +73,18 @@ func handleV2GoalsCreate(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": errMsg(err)})
 		return
 	}
+	// Outbox: publish goal.created.v1 atomically with the insert. Relay will
+	// drain to Kafka and the workflow service will plan the autopilot saga.
+	if err := publishDomainEvent(r.Context(), tx, s.OrgID, "goal.created.v1", map[string]interface{}{
+		"goal_id":      id,
+		"title":        req.Title,
+		"lens":         req.Lens,
+		"horizon_days": req.HorizonDays,
+		"user_id":      s.UserID,
+	}); err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": "outbox: " + err.Error()})
+		return
+	}
 	writeJSON(w, http.StatusOK, map[string]int64{"id": id})
 }
 

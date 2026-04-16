@@ -54,6 +54,12 @@ func main() {
 	}
 	log.Println("migrations applied")
 
+	// outbox relay: drains domain_events into Kafka at-least-once.
+	// Runs as a goroutine in the gateway process for deploy simplicity; can be
+	// extracted into its own service later with zero code change (just point it
+	// at the same Postgres + Kafka).
+	startOutboxRelay(context.Background(), db, kafkaBrokers, 1*time.Second)
+
 	// connect to redis
 	rdb = redis.NewClient(&redis.Options{
 		Addr: redisHost,
@@ -140,6 +146,9 @@ func main() {
 		// indicator composer + reading seed
 		v2.Get("/indicators/{code}/latest", handleV2IndicatorLatest)
 		v2.Post("/test/indicator/reading", handleV2TestIndicatorReading)
+
+		// saga observability
+		v2.Get("/workflows", handleV2WorkflowsList)
 	})
 
 	// Copilot proxy lives OUTSIDE the tenant-tx group (it's HTTP→HTTP, not DB).
