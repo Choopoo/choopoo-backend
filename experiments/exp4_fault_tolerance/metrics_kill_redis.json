@@ -1,0 +1,2879 @@
+{
+  "collected_at": "2026-03-31T14:50:42.163561",
+  "duration_seconds": 180,
+  "containers": [
+    "backend-consumer-2",
+    "backend-consumer-1",
+    "backend-ai-service-1",
+    "backend-producer-1",
+    "backend-gateway-1",
+    "backend-producer-2"
+  ],
+  "ai_service": {
+    "total_requests": 14,
+    "successes": 13,
+    "failures": 1,
+    "error_rate": 0.071,
+    "latency_ms": {
+      "min": 83.2,
+      "avg": 109.2,
+      "p50": 114.0,
+      "p95": 127.8,
+      "p99": 127.8,
+      "max": 127.8
+    },
+    "circuit_breaker_states": {
+      "CLOSED": 14
+    },
+    "resilience_mode": "circuit_breaker"
+  },
+  "consumer": {
+    "total_processed": 14,
+    "cache_hits": 0,
+    "db_inserts": 14,
+    "forwarded_to_ai": 14,
+    "cache_hit_rate": 0.0
+  },
+  "producer": {
+    "urls_crawled": 100,
+    "errors": 800
+  },
+  "raw_event_count": 972,
+  "docker_stats": [
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-consumer-2",
+      "cpu_percent": "0.09",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-consumer-1",
+      "cpu_percent": "0.55",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.08",
+      "mem_usage": "9.809MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.01",
+      "mem_usage": "7.148MiB / 7.654GiB",
+      "mem_percent": "0.09"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "5.07MiB / 7.654GiB",
+      "mem_percent": "0.06"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.01",
+      "mem_usage": "6.113MiB / 7.654GiB",
+      "mem_percent": "0.08"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-kafka-1",
+      "cpu_percent": "13.10",
+      "mem_usage": "376.9MiB / 7.654GiB",
+      "mem_percent": "4.81"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "28.03MiB / 7.654GiB",
+      "mem_percent": "0.36"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-redis-1",
+      "cpu_percent": "0.67",
+      "mem_usage": "9.27MiB / 7.654GiB",
+      "mem_percent": "0.12"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.23",
+      "mem_usage": "95.93MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.09",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:32.887546",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.58",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-consumer-2",
+      "cpu_percent": "2.87",
+      "mem_usage": "20.55MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-consumer-1",
+      "cpu_percent": "0.25",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.04",
+      "mem_usage": "9.809MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-producer-1",
+      "cpu_percent": "7.20",
+      "mem_usage": "14.38MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.53MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-producer-2",
+      "cpu_percent": "13.68",
+      "mem_usage": "13.68MiB / 7.654GiB",
+      "mem_percent": "0.17"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-kafka-1",
+      "cpu_percent": "13.80",
+      "mem_usage": "384.1MiB / 7.654GiB",
+      "mem_percent": "4.90"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-postgres-1",
+      "cpu_percent": "1.04",
+      "mem_usage": "28.62MiB / 7.654GiB",
+      "mem_percent": "0.37"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-redis-1",
+      "cpu_percent": "0.47",
+      "mem_usage": "9.316MiB / 7.654GiB",
+      "mem_percent": "0.12"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.28",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:37.602766",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.69",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-consumer-2",
+      "cpu_percent": "0.36",
+      "mem_usage": "20.59MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-consumer-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.15",
+      "mem_usage": "9.832MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-producer-1",
+      "cpu_percent": "22.20",
+      "mem_usage": "15.96MiB / 7.654GiB",
+      "mem_percent": "0.20"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.16",
+      "mem_usage": "10.5MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-producer-2",
+      "cpu_percent": "5.99",
+      "mem_usage": "16.45MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-kafka-1",
+      "cpu_percent": "6.60",
+      "mem_usage": "384.9MiB / 7.654GiB",
+      "mem_percent": "4.91"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.35",
+      "mem_usage": "29.17MiB / 7.654GiB",
+      "mem_percent": "0.37"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-redis-1",
+      "cpu_percent": "0.50",
+      "mem_usage": "9.316MiB / 7.654GiB",
+      "mem_percent": "0.12"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.15",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.24",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:42.308881",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.52",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-consumer-2",
+      "cpu_percent": "0.12",
+      "mem_usage": "20.59MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-consumer-1",
+      "cpu_percent": "0.12",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "9.832MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-producer-1",
+      "cpu_percent": "6.73",
+      "mem_usage": "15.62MiB / 7.654GiB",
+      "mem_percent": "0.20"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.5MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-producer-2",
+      "cpu_percent": "19.98",
+      "mem_usage": "17.7MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-kafka-1",
+      "cpu_percent": "10.44",
+      "mem_usage": "388.5MiB / 7.654GiB",
+      "mem_percent": "4.96"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "29.2MiB / 7.654GiB",
+      "mem_percent": "0.37"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-redis-1",
+      "cpu_percent": "0.45",
+      "mem_usage": "9.316MiB / 7.654GiB",
+      "mem_percent": "0.12"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.45",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.23",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:47.007454",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.51",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-consumer-2",
+      "cpu_percent": "0.17",
+      "mem_usage": "20.6MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-consumer-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.12",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-producer-1",
+      "cpu_percent": "18.78",
+      "mem_usage": "16.45MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.5MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-producer-2",
+      "cpu_percent": "5.14",
+      "mem_usage": "17.32MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-kafka-1",
+      "cpu_percent": "10.54",
+      "mem_usage": "389.9MiB / 7.654GiB",
+      "mem_percent": "4.98"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.09",
+      "mem_usage": "29.21MiB / 7.654GiB",
+      "mem_percent": "0.37"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.24",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:51.845969",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.41",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-consumer-1",
+      "cpu_percent": "0.19",
+      "mem_usage": "20.17MiB / 7.654GiB",
+      "mem_percent": "0.26"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.10",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-producer-1",
+      "cpu_percent": "10.94",
+      "mem_usage": "16.5MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "10.5MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-producer-2",
+      "cpu_percent": "10.10",
+      "mem_usage": "17.44MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-kafka-1",
+      "cpu_percent": "5.42",
+      "mem_usage": "390.3MiB / 7.654GiB",
+      "mem_percent": "4.98"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-postgres-1",
+      "cpu_percent": "1.38",
+      "mem_usage": "27.59MiB / 7.654GiB",
+      "mem_percent": "0.35"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.17",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:47:56.585401",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.56",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.55",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-producer-1",
+      "cpu_percent": "19.06",
+      "mem_usage": "16.08MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.5MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-producer-2",
+      "cpu_percent": "11.63",
+      "mem_usage": "17.85MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-kafka-1",
+      "cpu_percent": "12.52",
+      "mem_usage": "391.2MiB / 7.654GiB",
+      "mem_percent": "4.99"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "26.15MiB / 7.654GiB",
+      "mem_percent": "0.33"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.44",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:01.253673",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.42",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-producer-1",
+      "cpu_percent": "16.21",
+      "mem_usage": "16.36MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "10.48MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-producer-2",
+      "cpu_percent": "10.93",
+      "mem_usage": "17.97MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-kafka-1",
+      "cpu_percent": "8.34",
+      "mem_usage": "391.4MiB / 7.654GiB",
+      "mem_percent": "4.99"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.11",
+      "mem_usage": "26.71MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.29",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:05.883568",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.52",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.12",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-producer-1",
+      "cpu_percent": "12.41",
+      "mem_usage": "16.43MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.18",
+      "mem_usage": "10.47MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-producer-2",
+      "cpu_percent": "11.46",
+      "mem_usage": "17.67MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-kafka-1",
+      "cpu_percent": "4.79",
+      "mem_usage": "391.7MiB / 7.654GiB",
+      "mem_percent": "5.00"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "26.71MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.29",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:10.549300",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.55",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.23",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-producer-1",
+      "cpu_percent": "19.30",
+      "mem_usage": "17.05MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.46",
+      "mem_usage": "10.47MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-producer-2",
+      "cpu_percent": "16.49",
+      "mem_usage": "18.05MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-kafka-1",
+      "cpu_percent": "4.57",
+      "mem_usage": "391.8MiB / 7.654GiB",
+      "mem_percent": "5.00"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-postgres-1",
+      "cpu_percent": "1.18",
+      "mem_usage": "26.71MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.42",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "1.75",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:15.257120",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.54",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.24",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-producer-1",
+      "cpu_percent": "15.80",
+      "mem_usage": "16.34MiB / 7.654GiB",
+      "mem_percent": "0.21"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-gateway-1",
+      "cpu_percent": "13.67",
+      "mem_usage": "10.47MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-producer-2",
+      "cpu_percent": "6.65",
+      "mem_usage": "17.62MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-kafka-1",
+      "cpu_percent": "23.07",
+      "mem_usage": "392.2MiB / 7.654GiB",
+      "mem_percent": "5.00"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.04",
+      "mem_usage": "26.71MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "3.27",
+      "mem_usage": "95.94MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "1.23",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "1.44",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:19.959196",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "1.80",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.18",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-producer-1",
+      "cpu_percent": "14.32",
+      "mem_usage": "18.39MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.15",
+      "mem_usage": "10.47MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-producer-2",
+      "cpu_percent": "17.27",
+      "mem_usage": "18.6MiB / 7.654GiB",
+      "mem_percent": "0.24"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-kafka-1",
+      "cpu_percent": "11.38",
+      "mem_usage": "405MiB / 7.654GiB",
+      "mem_percent": "5.17"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.26",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.19",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:24.810836",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.57",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.38",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-producer-1",
+      "cpu_percent": "4.76",
+      "mem_usage": "18.29MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.47MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-producer-2",
+      "cpu_percent": "44.64",
+      "mem_usage": "17.41MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-kafka-1",
+      "cpu_percent": "12.90",
+      "mem_usage": "405.1MiB / 7.654GiB",
+      "mem_percent": "5.17"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.08",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.26",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:29.456798",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.73",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.34",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-producer-1",
+      "cpu_percent": "22.69",
+      "mem_usage": "17.97MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.20",
+      "mem_usage": "10.47MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-producer-2",
+      "cpu_percent": "16.49",
+      "mem_usage": "17.29MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-kafka-1",
+      "cpu_percent": "14.45",
+      "mem_usage": "395MiB / 7.654GiB",
+      "mem_percent": "5.04"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "5.43",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.53",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:34.396569",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.41",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.16",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-producer-1",
+      "cpu_percent": "23.41",
+      "mem_usage": "18.73MiB / 7.654GiB",
+      "mem_percent": "0.24"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.48MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-producer-2",
+      "cpu_percent": "10.29",
+      "mem_usage": "17.92MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-kafka-1",
+      "cpu_percent": "3.92",
+      "mem_usage": "399.5MiB / 7.654GiB",
+      "mem_percent": "5.10"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.43",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:39.074142",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.50",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.14",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-producer-1",
+      "cpu_percent": "9.18",
+      "mem_usage": "17.88MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.48MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-producer-2",
+      "cpu_percent": "31.67",
+      "mem_usage": "18.02MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-kafka-1",
+      "cpu_percent": "5.23",
+      "mem_usage": "397.5MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-postgres-1",
+      "cpu_percent": "6.72",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.14",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.08",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:43.740963",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.48",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.17",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-producer-1",
+      "cpu_percent": "14.40",
+      "mem_usage": "17.83MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.48MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-producer-2",
+      "cpu_percent": "8.42",
+      "mem_usage": "18.29MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-kafka-1",
+      "cpu_percent": "1.89",
+      "mem_usage": "397.5MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.04",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.27",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:48.403352",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.40",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-producer-1",
+      "cpu_percent": "10.29",
+      "mem_usage": "18.14MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.48MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-producer-2",
+      "cpu_percent": "5.01",
+      "mem_usage": "17.49MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-kafka-1",
+      "cpu_percent": "6.24",
+      "mem_usage": "397.6MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.52",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.08",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:53.056485",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.52",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.26",
+      "mem_usage": "9.84MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.25",
+      "mem_usage": "18.1MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.48MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.70",
+      "mem_usage": "17.58MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-kafka-1",
+      "cpu_percent": "6.79",
+      "mem_usage": "397.7MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.48",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:48:57.725663",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.80",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.19",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "17.89MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.45",
+      "mem_usage": "10.49MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.57MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-kafka-1",
+      "cpu_percent": "4.34",
+      "mem_usage": "396.8MiB / 7.654GiB",
+      "mem_percent": "5.06"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.04",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.25",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "2.64",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:02.399492",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.64",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.16",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.01",
+      "mem_usage": "17.88MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.5MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.06",
+      "mem_usage": "17.55MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-kafka-1",
+      "cpu_percent": "10.79",
+      "mem_usage": "396.9MiB / 7.654GiB",
+      "mem_percent": "5.06"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.01",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.39",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.06",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:07.048869",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.69",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "9.84MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.12",
+      "mem_usage": "17.86MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.06",
+      "mem_usage": "17.53MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.62",
+      "mem_usage": "396.5MiB / 7.654GiB",
+      "mem_percent": "5.06"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.34",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.10",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:11.769564",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "1.21",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.51",
+      "mem_usage": "18.08MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.52MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-kafka-1",
+      "cpu_percent": "3.96",
+      "mem_usage": "396.5MiB / 7.654GiB",
+      "mem_percent": "5.06"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.30",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "1.03",
+      "mem_usage": "96.2MiB / 7.654GiB",
+      "mem_percent": "1.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.36",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.12",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:16.617528",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.90",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.14",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "17.81MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-gateway-1",
+      "cpu_percent": "1.01",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.11",
+      "mem_usage": "17.5MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-kafka-1",
+      "cpu_percent": "7.56",
+      "mem_usage": "397.2MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.76MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.42",
+      "mem_usage": "95.95MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.06",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:21.341271",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.91",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.12",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.20",
+      "mem_usage": "17.8MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.48MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-kafka-1",
+      "cpu_percent": "3.15",
+      "mem_usage": "397.3MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.78MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.36",
+      "mem_usage": "95.96MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.06",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:26.069615",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.91",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.16",
+      "mem_usage": "9.84MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.04",
+      "mem_usage": "17.78MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.10",
+      "mem_usage": "17.47MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.31",
+      "mem_usage": "397.3MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.40",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.65",
+      "mem_usage": "122.2MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:30.951092",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.97",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.09",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.26",
+      "mem_usage": "17.76MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.10",
+      "mem_usage": "17.46MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-kafka-1",
+      "cpu_percent": "6.96",
+      "mem_usage": "397.4MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.43",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:35.627508",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.65",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.18",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.73MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.17",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.32",
+      "mem_usage": "17.43MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.89",
+      "mem_usage": "397.4MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.19",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.20",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.07",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:40.425497",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.72",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.32",
+      "mem_usage": "17.71MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.52",
+      "mem_usage": "17.42MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-kafka-1",
+      "cpu_percent": "6.27",
+      "mem_usage": "397.9MiB / 7.654GiB",
+      "mem_percent": "5.08"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.29",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.08",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:45.270343",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.73",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.11",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.25",
+      "mem_usage": "17.7MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.42MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.23",
+      "mem_usage": "17.4MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.50",
+      "mem_usage": "397.4MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:49.967123",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.99",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.20",
+      "mem_usage": "9.84MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "17.68MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.03",
+      "mem_usage": "17.39MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-kafka-1",
+      "cpu_percent": "7.23",
+      "mem_usage": "397.6MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.24",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "122MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:54.654832",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.87",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "17.67MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.59",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.16",
+      "mem_usage": "17.38MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-kafka-1",
+      "cpu_percent": "7.15",
+      "mem_usage": "397.6MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.01",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "1.04",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "12.58",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.09MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:49:59.339263",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.58",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.13",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.66MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.11",
+      "mem_usage": "17.38MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.50",
+      "mem_usage": "397.6MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-postgres-1",
+      "cpu_percent": "2.75",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.38",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.40",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "1.99",
+      "mem_usage": "23.11MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:04.008552",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.67",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.11",
+      "mem_usage": "9.84MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.24",
+      "mem_usage": "17.66MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.12",
+      "mem_usage": "17.38MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.77",
+      "mem_usage": "397.6MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.01",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.25",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.03",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:08.687224",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.67",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.18",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.66MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.14",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.26",
+      "mem_usage": "17.38MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.13",
+      "mem_usage": "397.6MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.28",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.09",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:13.369277",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.65",
+      "mem_usage": "14.37MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.09",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.24",
+      "mem_usage": "17.65MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.12",
+      "mem_usage": "17.37MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.63",
+      "mem_usage": "397.9MiB / 7.654GiB",
+      "mem_percent": "5.08"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.06",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.31",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:18.029708",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.63",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.20",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "17.65MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.01",
+      "mem_usage": "17.37MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-kafka-1",
+      "cpu_percent": "3.47",
+      "mem_usage": "397.7MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.19",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:22.678623",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.64",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.15",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.30",
+      "mem_usage": "17.65MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-gateway-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.09",
+      "mem_usage": "17.37MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-kafka-1",
+      "cpu_percent": "4.47",
+      "mem_usage": "397.9MiB / 7.654GiB",
+      "mem_percent": "5.08"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.28",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.05",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:27.350539",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.63",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-ai-service-1",
+      "cpu_percent": "0.09",
+      "mem_usage": "9.836MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-producer-1",
+      "cpu_percent": "0.08",
+      "mem_usage": "17.66MiB / 7.654GiB",
+      "mem_percent": "0.23"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-gateway-1",
+      "cpu_percent": "1.05",
+      "mem_usage": "10.43MiB / 7.654GiB",
+      "mem_percent": "0.13"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-producer-2",
+      "cpu_percent": "0.11",
+      "mem_usage": "17.37MiB / 7.654GiB",
+      "mem_percent": "0.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-kafka-1",
+      "cpu_percent": "2.43",
+      "mem_usage": "397.7MiB / 7.654GiB",
+      "mem_percent": "5.07"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-postgres-1",
+      "cpu_percent": "0.00",
+      "mem_usage": "26.77MiB / 7.654GiB",
+      "mem_percent": "0.34"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "backend-zookeeper-1",
+      "cpu_percent": "0.22",
+      "mem_usage": "95.97MiB / 7.654GiB",
+      "mem_percent": "1.22"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "triclick-backend-minio-1",
+      "cpu_percent": "0.27",
+      "mem_usage": "121.9MiB / 7.654GiB",
+      "mem_percent": "1.56"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "triclick-backend-postgres-1",
+      "cpu_percent": "2.06",
+      "mem_usage": "23.1MiB / 7.654GiB",
+      "mem_percent": "0.29"
+    },
+    {
+      "timestamp": "2026-03-31T14:50:32.037565",
+      "container": "triclick-backend-redis-1",
+      "cpu_percent": "0.67",
+      "mem_usage": "14.12MiB / 7.654GiB",
+      "mem_percent": "0.18"
+    }
+  ]
+}

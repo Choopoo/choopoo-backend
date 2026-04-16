@@ -1,0 +1,7 @@
+{
+  "target": "producer",
+  "service": "producer",
+  "container_id": "964a8a7697fff3b69f2b9ea535cb71cf8a59f18dc3dc85e907a237ee60bd88a5",
+  "container": "backend-producer-1",
+  "killed_at": "2026-03-31T14:39:52.559378"
+}

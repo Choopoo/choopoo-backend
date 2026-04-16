@@ -1,0 +1,31 @@
+# Go build artifacts
+services/gateway/gateway
+services/producer/producer
+*.exe
+*.test
+*.out
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Env files
+.env
+.env.local
+*.env
+
+# Editor
+.vscode/
+.idea/
+.DS_Store
+
+# Logs
+*.log
+logs/
+
+# Experiment outputs (keep committed results, ignore raw dumps)
+experiments/tmp/

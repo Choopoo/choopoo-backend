@@ -1,0 +1,7 @@
+{
+  "target": "consumer",
+  "service": "consumer",
+  "container_id": "264d6c6e7b2758a651d4b2738fda13b311e86d6f8b847b3ec99b217534b30995",
+  "container": "backend-consumer-1",
+  "killed_at": "2026-03-31T14:43:52.129614"
+}

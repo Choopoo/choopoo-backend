@@ -1,0 +1,33 @@
+{
+  "experiment": "exp4_fault_tolerance",
+  "methodology": "Recovery time uses docker_stats for the gateway container vs kill_event killed_at; see module docstring.",
+  "targets": [
+    {
+      "target": "producer",
+      "killed_at": "2026-03-31T14:39:52.559378",
+      "recovery_seconds_gateway_cpu_heuristic": 10.65,
+      "loadtest_throughput_rps": 783.74,
+      "loadtest_errors": 0,
+      "messages_lost": "not measured (no Kafka offset instrumentation)",
+      "notes": "Aggregate load test spans pre-kill and post-kill; throughput is not a clean baseline comparison."
+    },
+    {
+      "target": "consumer",
+      "killed_at": "2026-03-31T14:43:52.129614",
+      "recovery_seconds_gateway_cpu_heuristic": 31.15,
+      "loadtest_throughput_rps": 672.68,
+      "loadtest_errors": 0,
+      "messages_lost": "not measured (no Kafka offset instrumentation)",
+      "notes": "Aggregate load test spans pre-kill and post-kill; throughput is not a clean baseline comparison."
+    },
+    {
+      "target": "redis",
+      "killed_at": "2026-03-31T14:47:50.475667",
+      "recovery_seconds_gateway_cpu_heuristic": 6.11,
+      "loadtest_throughput_rps": 822.75,
+      "loadtest_errors": 0,
+      "messages_lost": "not measured (no Kafka offset instrumentation)",
+      "notes": "Aggregate load test spans pre-kill and post-kill; throughput is not a clean baseline comparison."
+    }
+  ]
+}

@@ -1,0 +1,106 @@
+version: '3.8'
+
+services:
+  kafka:
+    image: confluentinc/cp-kafka:7.7.0
+    ports:
+      - "9092:9092"
+    environment:
+      # KRaft mode — no Zookeeper needed
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://0.0.0.0:9092,CONTROLLER://kafka:9093
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:29092,PLAINTEXT_HOST://localhost:9092
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_HOST:PLAINTEXT,CONTROLLER:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      CLUSTER_ID: "MkU3OEVBNTcwNTJENDM2Qk"
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+
+  postgres:
+    image: postgres:15-alpine
+    ports:
+      - "5433:5432"
+    environment:
+      POSTGRES_USER: pipeline
+      POSTGRES_PASSWORD: pipeline
+      POSTGRES_DB: pipeline
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+      - ./scripts/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  gateway:
+    build: ./services/gateway
+    ports:
+      - "8081:8080"
+    depends_on:
+      - kafka
+      - redis
+      - postgres
+    environment:
+      KAFKA_BROKERS: kafka:29092
+      REDIS_HOST: redis:6379
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: pipeline
+      DB_PASSWORD: pipeline
+      DB_NAME: pipeline
+
+  producer:
+    build: ./services/producer
+    depends_on:
+      - kafka
+    environment:
+      KAFKA_BROKERS: kafka:29092
+      CRAWL_TOPIC: crawl-jobs
+      OUTPUT_TOPIC: page-metadata
+      MODE: consumer
+      CONCURRENCY: 10
+
+  consumer:
+    build: ./services/consumer
+    depends_on:
+      - kafka
+      - redis
+      - postgres
+    environment:
+      KAFKA_BROKERS: kafka:29092
+      INPUT_TOPIC: page-metadata
+      OUTPUT_TOPIC: analysis-results
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: pipeline
+      DB_PASSWORD: pipeline
+      DB_NAME: pipeline
+
+  ai-service:
+    build: ./services/ai-service
+    depends_on:
+      - kafka
+      - redis
+      - postgres
+    environment:
+      KAFKA_BROKERS: kafka:29092
+      INPUT_TOPIC: analysis-results
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      DB_HOST: postgres
+      DB_PORT: 5432
+      DB_USER: pipeline
+      DB_PASSWORD: pipeline
+      DB_NAME: pipeline
+      RESILIENCE_MODE: ${RESILIENCE_MODE:-circuit_breaker}
+      MOCK_API_LATENCY_MS: ${MOCK_API_LATENCY_MS:-100}
+      MOCK_API_FAILURE_RATE: ${MOCK_API_FAILURE_RATE:-0.1}
+
+volumes:
+  pgdata:

@@ -1,0 +1,25 @@
+{
+  "experiment": "consumer_scaling_aws",
+  "cluster": "pipeline-cluster",
+  "region": "us-west-2",
+  "gateway": "http://pipeline-alb-1886616973.us-west-2.elb.amazonaws.com",
+  "steps": [
+    {
+      "concurrent": 5,
+      "consumers": 1
+    },
+    {
+      "concurrent": 20,
+      "consumers": 3
+    },
+    {
+      "concurrent": 50,
+      "consumers": 5
+    }
+  ],
+  "load": {
+    "batch_size": 3,
+    "total_formula": "concurrent * 10"
+  },
+  "timestamp": "2026-03-31T13:38:10.013218"
+}

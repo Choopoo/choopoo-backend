@@ -1,0 +1,21 @@
+{
+  "experiment": "resilience_aws",
+  "cluster": "pipeline-cluster",
+  "region": "us-west-2",
+  "gateway": "http://pipeline-alb-1886616973.us-west-2.elb.amazonaws.com",
+  "modes": [
+    "backoff",
+    "backpressure",
+    "circuit_breaker"
+  ],
+  "mock": {
+    "MOCK_API_FAILURE_RATE": "0.3",
+    "MOCK_API_LATENCY_MS": "200"
+  },
+  "load": {
+    "concurrency": 50,
+    "total": 250,
+    "batch_size": 2
+  },
+  "timestamp": "2026-03-31T13:48:45.220182"
+}

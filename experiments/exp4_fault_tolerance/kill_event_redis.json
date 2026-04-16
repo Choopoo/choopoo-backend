@@ -1,0 +1,7 @@
+{
+  "target": "redis",
+  "service": "redis",
+  "container_id": "b269af785c44cd0fb3c48c792d714b70fc634a8f85b06d686db1703d4bf24e9c",
+  "container": "backend-redis-1",
+  "killed_at": "2026-03-31T14:47:50.475667"
+}

@@ -1,0 +1,17 @@
+{
+  "experiment": "producer_scaling_aws",
+  "cluster": "pipeline-cluster",
+  "region": "us-west-2",
+  "gateway": "http://pipeline-alb-1886616973.us-west-2.elb.amazonaws.com",
+  "producer_counts": [
+    2,
+    5,
+    10
+  ],
+  "load": {
+    "concurrency": 10,
+    "total": 200,
+    "batch_size": 3
+  },
+  "timestamp": "2026-03-31T13:33:58.213998"
+}

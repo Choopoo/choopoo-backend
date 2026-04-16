@@ -1,0 +1,14 @@
+{
+  "experiment": "Fault Tolerance & Recovery",
+  "targets": [
+    "producer",
+    "consumer",
+    "redis"
+  ],
+  "load_config": {
+    "concurrency": 20,
+    "total": 300,
+    "batch_size": 3
+  },
+  "timestamp": "2026-03-31T14:50:42.184364"
+}
