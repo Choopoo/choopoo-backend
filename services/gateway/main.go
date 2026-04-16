@@ -34,6 +34,7 @@ func main() {
 	dbUser := getEnv("DB_USER", "postgres")
 	dbPass := getEnv("DB_PASSWORD", "postgres")
 	dbName := getEnv("DB_NAME", "pipeline")
+	migrationsPath := getEnv("MIGRATIONS_PATH", "/app/migrations")
 
 	// connect to postgres
 	connStr := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
@@ -46,6 +47,12 @@ func main() {
 	db.SetMaxOpenConns(20)
 	db.SetConnMaxLifetime(5 * time.Minute)
 	log.Println("connected to postgres")
+
+	// run migrations (idempotent)
+	if err := runMigrations(db, migrationsPath); err != nil {
+		log.Fatalf("migrations failed: %v", err)
+	}
+	log.Println("migrations applied")
 
 	// connect to redis
 	rdb = redis.NewClient(&redis.Options{
@@ -72,19 +79,34 @@ func main() {
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
 	r.Use(cors.Handler(cors.Options{
-		AllowedOrigins:   []string{"*"},
+		AllowedOrigins:   corsOrigins(),
 		AllowedMethods:   []string{"GET", "POST", "OPTIONS"},
 		AllowedHeaders:   []string{"Content-Type"},
-		AllowCredentials: false,
+		AllowCredentials: true,
 		MaxAge:           300,
 	}))
+	r.Use(resolveSession)
 
-	// API routes first
+	// --- v1 routes (unauth, sentinel org_id=0) ---
 	r.Get("/health", handleHealth)
 	r.Get("/api/status", handleStatus)
 	r.Post("/api/crawl", handleCrawl)
 	r.Get("/api/results", handleResults)
 	r.Get("/api/results/{id}", handleResultByID)
+
+	// --- auth ---
+	r.Post("/auth/magic-link", handleRequestMagicLink)
+	r.Get("/auth/verify", handleVerifyMagicLink)
+	r.Post("/auth/logout", handleLogout)
+
+	// --- v2 routes (require session, tenant-scoped tx) ---
+	r.Route("/api/v2", func(v2 chi.Router) {
+		v2.Use(requireAuth)
+		v2.Use(withTenantTx)
+		v2.Get("/me", handleMe)
+		v2.Get("/results", handleV2Results)
+		v2.Post("/test/seed", handleV2TestSeed)
+	})
 
 	r.NotFound(func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
@@ -103,4 +125,18 @@ func getEnv(key, fallback string) string {
 		return v
 	}
 	return fallback
+}
+
+// corsOrigins parses CORS_ALLOWED_ORIGINS (comma-separated). Default for local
+// dev: nginx-frontend at :3000 + dev server. Production should override.
+func corsOrigins() []string {
+	v := getEnv("CORS_ALLOWED_ORIGINS", "http://localhost:3000,http://localhost:5173")
+	parts := strings.Split(v, ",")
+	out := make([]string, 0, len(parts))
+	for _, p := range parts {
+		if s := strings.TrimSpace(p); s != "" {
+			out = append(out, s)
+		}
+	}
+	return out
 }

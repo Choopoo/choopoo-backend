@@ -165,7 +165,8 @@ func handleResults(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// query postgres
+	// query postgres — v1 is scoped to legacy sentinel org_id=0 so v2 tenant data
+	// is never exposed via the unauthenticated v1 endpoint.
 	query := `
 		SELECT p.id, p.url, p.domain, p.title, p.meta_description, p.score, p.crawled_at,
 		       p.material, p.source_label, p.job_id,
@@ -175,7 +176,7 @@ func handleResults(w http.ResponseWriter, r *http.Request) {
 	`
 	args := []interface{}{}
 	argPos := 1
-	where := []string{}
+	where := []string{"p.org_id = 0"}
 	if domain != "" {
 		where = append(where, fmt.Sprintf("p.domain = $%d", argPos))
 		args = append(args, domain)
@@ -186,9 +187,7 @@ func handleResults(w http.ResponseWriter, r *http.Request) {
 		args = append(args, material)
 		argPos++
 	}
-	if len(where) > 0 {
-		query += " WHERE " + strings.Join(where, " AND ")
-	}
+	query += " WHERE " + strings.Join(where, " AND ")
 	query += " ORDER BY p.crawled_at DESC"
 	query += fmt.Sprintf(" LIMIT %d", limit)
 
@@ -240,7 +239,7 @@ func handleResultByID(w http.ResponseWriter, r *http.Request) {
 		       ar.summary, ar.recommendation
 		FROM pages p
 		LEFT JOIN analysis_results ar ON ar.page_id = p.id
-		WHERE p.id = $1
+		WHERE p.id = $1 AND p.org_id = 0
 	`
 	var pr PageResult
 	var mat, src, jid sql.NullString
