@@ -110,6 +110,7 @@ func main() {
 		v2.Use(requireAuth)
 		v2.Use(withTenantTx)
 		v2.Get("/me", handleMe)
+		v2.Patch("/me", handleUpdateMe)
 		v2.Get("/results", handleV2Results)
 		v2.Post("/test/seed", handleV2TestSeed)
 

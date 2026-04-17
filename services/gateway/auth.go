@@ -32,6 +32,7 @@ type meResponse struct {
 	UserID int64  `json:"user_id"`
 	OrgID  int64  `json:"org_id"`
 	Email  string `json:"email"`
+	Locale string `json:"locale"`
 	Role   string `json:"role"`
 }
 
@@ -148,8 +149,13 @@ func handleVerifyMagicLink(w http.ResponseWriter, r *http.Request) {
 		http.Redirect(w, r, redirect, http.StatusFound)
 		return
 	}
+	var locale string
+	if err := db.QueryRowContext(r.Context(),
+		`SELECT locale FROM users WHERE id = $1`, user.ID).Scan(&locale); err != nil {
+		locale = "en"
+	}
 	writeJSON(w, http.StatusOK, meResponse{
-		UserID: user.ID, OrgID: user.OrgID, Email: user.Email, Role: user.Role,
+		UserID: user.ID, OrgID: user.OrgID, Email: user.Email, Role: user.Role, Locale: locale,
 	})
 }
 
@@ -177,9 +183,40 @@ func handleMe(w http.ResponseWriter, r *http.Request) {
 		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "unauthenticated"})
 		return
 	}
+	var locale string
+	if err := db.QueryRowContext(r.Context(),
+		`SELECT locale FROM users WHERE id = $1`, s.UserID).Scan(&locale); err != nil {
+		locale = "en"
+	}
 	writeJSON(w, http.StatusOK, meResponse{
-		UserID: s.UserID, OrgID: s.OrgID, Email: s.Email, Role: s.Role,
+		UserID: s.UserID, OrgID: s.OrgID, Email: s.Email, Role: s.Role, Locale: locale,
 	})
+}
+
+// PATCH /api/v2/me -- update the current user's locale preference.
+func handleUpdateMe(w http.ResponseWriter, r *http.Request) {
+	s := sessionFromContext(r.Context())
+	if s == nil {
+		writeJSON(w, http.StatusUnauthorized, map[string]string{"error": "unauthenticated"})
+		return
+	}
+	var body struct {
+		Locale string `json:"locale"`
+	}
+	if err := decodeJSON(r, &body); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "body required"})
+		return
+	}
+	if body.Locale != "en" && body.Locale != "zh-CN" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "locale must be 'en' or 'zh-CN'"})
+		return
+	}
+	if _, err := db.ExecContext(r.Context(),
+		`UPDATE users SET locale = $1 WHERE id = $2`, body.Locale, s.UserID); err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": errMsg(err)})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]string{"locale": body.Locale})
 }
 
 // --- helpers ---

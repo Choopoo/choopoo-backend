@@ -36,6 +36,8 @@ type catalogProduct struct {
 type catalogIndicator struct {
 	ID             int64           `json:"id"`
 	Code           string          `json:"code"`
+	Name           *string         `json:"name"`
+	NameCN         *string         `json:"name_cn"`
 	Kind           string          `json:"kind"`
 	SubjectKind    string          `json:"subject_kind"`
 	SubjectCode    *string         `json:"subject_code"`
@@ -45,6 +47,7 @@ type catalogIndicator struct {
 	SourceID       *int64          `json:"source_id"`
 	FormulaJSON    json.RawMessage `json:"formula_json"`
 	Description    *string         `json:"description"`
+	DescriptionCN  *string         `json:"description_cn"`
 }
 
 func handleV2CatalogMaterials(w http.ResponseWriter, r *http.Request) {
@@ -107,8 +110,8 @@ func handleV2CatalogProducts(w http.ResponseWriter, r *http.Request) {
 func handleV2CatalogIndicators(w http.ResponseWriter, r *http.Request) {
 	tx := TxFromContext(r.Context())
 	rows, err := tx.QueryContext(r.Context(),
-		`SELECT id, code, kind, subject_kind, subject_code, region_code, unit,
-		        cadence_minutes, source_id, formula_json, description
+		`SELECT id, code, name, name_cn, kind, subject_kind, subject_code, region_code, unit,
+		        cadence_minutes, source_id, formula_json, description, description_cn
 		   FROM catalog_indicator_template ORDER BY kind, code`)
 	if err != nil {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": errMsg(err)})
@@ -118,16 +121,19 @@ func handleV2CatalogIndicators(w http.ResponseWriter, r *http.Request) {
 	out := []catalogIndicator{}
 	for rows.Next() {
 		var ind catalogIndicator
-		var subC, regC, desc sql.NullString
+		var name, nameCN, subC, regC, desc, descCN sql.NullString
 		var srcID sql.NullInt64
 		var formula sql.NullString
-		if err := rows.Scan(&ind.ID, &ind.Code, &ind.Kind, &ind.SubjectKind,
-			&subC, &regC, &ind.Unit, &ind.CadenceMinutes, &srcID, &formula, &desc); err != nil {
+		if err := rows.Scan(&ind.ID, &ind.Code, &name, &nameCN, &ind.Kind, &ind.SubjectKind,
+			&subC, &regC, &ind.Unit, &ind.CadenceMinutes, &srcID, &formula, &desc, &descCN); err != nil {
 			continue
 		}
+		ind.Name = nullStringPtr(name)
+		ind.NameCN = nullStringPtr(nameCN)
 		ind.SubjectCode = nullStringPtr(subC)
 		ind.RegionCode = nullStringPtr(regC)
 		ind.Description = nullStringPtr(desc)
+		ind.DescriptionCN = nullStringPtr(descCN)
 		if srcID.Valid {
 			v := srcID.Int64
 			ind.SourceID = &v
@@ -413,6 +419,8 @@ type resolvedIndicator struct {
 	Source         string          `json:"source"` // "catalog" | "catalog+override" | "private"
 	ID             int64           `json:"id"`
 	Code           string          `json:"code"`
+	Name           *string         `json:"name,omitempty"`
+	NameCN         *string         `json:"name_cn,omitempty"`
 	Kind           string          `json:"kind"`
 	SubjectKind    string          `json:"subject_kind"`
 	SubjectCode    *string         `json:"subject_code,omitempty"`
@@ -421,6 +429,7 @@ type resolvedIndicator struct {
 	CadenceMinutes int             `json:"cadence_minutes"`
 	FormulaJSON    json.RawMessage `json:"formula_json"`
 	Description    *string         `json:"description,omitempty"`
+	DescriptionCN  *string         `json:"description_cn,omitempty"`
 }
 
 // GET /api/v2/me/indicators — enabled catalog (with overrides applied) ∪ private.
@@ -432,11 +441,11 @@ func handleV2MeIndicators(w http.ResponseWriter, r *http.Request) {
 
 	// Enabled catalog with overrides applied.
 	rows, err := tx.QueryContext(r.Context(),
-		`SELECT cit.id, cit.code, cit.kind, cit.subject_kind, cit.subject_code,
+		`SELECT cit.id, cit.code, cit.name, cit.name_cn, cit.kind, cit.subject_kind, cit.subject_code,
 		        cit.region_code, cit.unit,
 		        COALESCE(tio.cadence_override, cit.cadence_minutes) AS cadence_minutes,
 		        COALESCE(tio.formula_json_override, cit.formula_json) AS formula_json,
-		        cit.description,
+		        cit.description, cit.description_cn,
 		        (tio.org_id IS NOT NULL) AS has_override
 		   FROM tenant_indicator_enablement tie
 		   JOIN catalog_indicator_template cit ON cit.id = tie.catalog_indicator_template_id
@@ -449,15 +458,18 @@ func handleV2MeIndicators(w http.ResponseWriter, r *http.Request) {
 	}
 	for rows.Next() {
 		var ind resolvedIndicator
-		var subC, regC, desc, formula sql.NullString
+		var name, nameCN, subC, regC, desc, descCN, formula sql.NullString
 		var hasOverride bool
-		if err := rows.Scan(&ind.ID, &ind.Code, &ind.Kind, &ind.SubjectKind,
-			&subC, &regC, &ind.Unit, &ind.CadenceMinutes, &formula, &desc, &hasOverride); err != nil {
+		if err := rows.Scan(&ind.ID, &ind.Code, &name, &nameCN, &ind.Kind, &ind.SubjectKind,
+			&subC, &regC, &ind.Unit, &ind.CadenceMinutes, &formula, &desc, &descCN, &hasOverride); err != nil {
 			continue
 		}
+		ind.Name = nullStringPtr(name)
+		ind.NameCN = nullStringPtr(nameCN)
 		ind.SubjectCode = nullStringPtr(subC)
 		ind.RegionCode = nullStringPtr(regC)
 		ind.Description = nullStringPtr(desc)
+		ind.DescriptionCN = nullStringPtr(descCN)
 		if formula.Valid {
 			ind.FormulaJSON = json.RawMessage(formula.String)
 		} else {

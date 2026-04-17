@@ -13,7 +13,9 @@ type aspect struct {
 	ID               int64   `json:"id"`
 	Code             string  `json:"code"`
 	Name             string  `json:"name"`
+	NameCN           *string `json:"name_cn"`
 	Description      *string `json:"description"`
+	DescriptionCN    *string `json:"description_cn"`
 	Axis             string  `json:"axis"`
 	DefaultRelevance float64 `json:"default_relevance"`
 }
@@ -23,6 +25,7 @@ type subjectAspectRow struct {
 	AspectID            int64            `json:"aspect_id"`
 	AspectCode          string           `json:"aspect_code"`
 	AspectName          string           `json:"aspect_name"`
+	AspectNameCN        *string          `json:"aspect_name_cn"`
 	Axis                string           `json:"axis"`
 	Status              string           `json:"status"`
 	RelevanceR          *float64         `json:"relevance_r"`
@@ -40,7 +43,7 @@ type subjectAspectRow struct {
 func handleV2AspectsList(w http.ResponseWriter, r *http.Request) {
 	tx := TxFromContext(r.Context())
 	rows, err := tx.QueryContext(r.Context(),
-		`SELECT id, code, name, description, axis, default_relevance
+		`SELECT id, code, name, name_cn, description, description_cn, axis, default_relevance
 		   FROM catalog_signal_aspect ORDER BY default_relevance DESC, code`)
 	if err != nil {
 		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": errMsg(err)})
@@ -50,11 +53,13 @@ func handleV2AspectsList(w http.ResponseWriter, r *http.Request) {
 	out := []aspect{}
 	for rows.Next() {
 		var a aspect
-		var desc sql.NullString
-		if err := rows.Scan(&a.ID, &a.Code, &a.Name, &desc, &a.Axis, &a.DefaultRelevance); err != nil {
+		var nameCN, desc, descCN sql.NullString
+		if err := rows.Scan(&a.ID, &a.Code, &a.Name, &nameCN, &desc, &descCN, &a.Axis, &a.DefaultRelevance); err != nil {
 			continue
 		}
+		a.NameCN = nullStringPtr(nameCN)
 		a.Description = nullStringPtr(desc)
+		a.DescriptionCN = nullStringPtr(descCN)
 		out = append(out, a)
 	}
 	writeJSON(w, http.StatusOK, out)
@@ -77,7 +82,7 @@ func handleV2SubjectAspects(w http.ResponseWriter, r *http.Request) {
 	}
 
 	q := `
-		SELECT sas.subject_code, sas.aspect_id, csa.code, csa.name, csa.axis, sas.status,
+		SELECT sas.subject_code, sas.aspect_id, csa.code, csa.name, csa.name_cn, csa.axis, sas.status,
 		       sas.relevance_r, sas.diversity_bonus, sas.score,
 		       sas.relevance_rationale,
 		       COALESCE(sas.induction_chain, 'null'::jsonb),
@@ -98,16 +103,17 @@ func handleV2SubjectAspects(w http.ResponseWriter, r *http.Request) {
 	out := []subjectAspectRow{}
 	for rows.Next() {
 		var row subjectAspectRow
-		var rationale sql.NullString
+		var nameCN, rationale sql.NullString
 		var chainStr, exStr sql.NullString
 		var ts sql.NullTime
 		var relR, divB, score sql.NullFloat64
-		if err := rows.Scan(&row.SubjectCode, &row.AspectID, &row.AspectCode, &row.AspectName, &row.Axis, &row.Status,
+		if err := rows.Scan(&row.SubjectCode, &row.AspectID, &row.AspectCode, &row.AspectName, &nameCN, &row.Axis, &row.Status,
 			&relR, &divB, &score,
 			&rationale, &chainStr, &exStr,
 			&row.EvidenceVerified, &ts, &row.ProviderCount); err != nil {
 			continue
 		}
+		row.AspectNameCN = nullStringPtr(nameCN)
 		if relR.Valid { v := relR.Float64; row.RelevanceR = &v }
 		if divB.Valid { v := divB.Float64; row.DiversityBonus = &v }
 		if score.Valid { v := score.Float64; row.Score = &v }
