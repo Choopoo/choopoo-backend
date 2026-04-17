@@ -12,7 +12,7 @@ import anthropic
 from tools import TOOL_SCHEMAS, call_tool
 
 MODEL = os.getenv("CLAUDE_MODEL", "claude-opus-4-7")
-MAX_TURNS = 6
+MAX_TURNS = 14
 
 SYSTEM_PROMPT = """\
 You are Choopoo's procurement & GTM copilot for a Chinese PU SME owner.

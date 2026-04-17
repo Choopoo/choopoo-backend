@@ -98,6 +98,66 @@ TOOL_SCHEMAS: list[dict[str, Any]] = [
             "required": ["goal_id", "indicator_kind", "indicator_id"],
         },
     },
+    {
+        "name": "propose_aspect",
+        "description": (
+            "Propose a signal aspect for a subject (raw material code like 'TDI', 'CAPROLACTAM'). "
+            "An aspect is a distinct INFORMATION AXIS — not a URL. Use one of the 10 canonical "
+            "aspect codes: price, supply_event, shipping, regulatory, weather, trade_flow, "
+            "geopolitics, demand_proxy, capacity_news, macro_fx. "
+            "EVERY proposal MUST include an induction_chain (numbered cause→effect chain) AND "
+            "at least one example_event with a concrete date — these are the anti-hallucination "
+            "audit trail the owner reviews before activating. Status defaults to 'candidate'; "
+            "use 'active' only when relevance is very high (>0.8) and the user explicitly asked "
+            "to activate."
+        ),
+        "input_schema": {
+            "type": "object",
+            "properties": {
+                "subject_code": {"type": "string", "description": "Material/subject code (e.g. 'TDI', 'CAPROLACTAM')"},
+                "aspect_code": {"type": "string", "enum": [
+                    "price", "supply_event", "shipping", "regulatory", "weather",
+                    "trade_flow", "geopolitics", "demand_proxy", "capacity_news", "macro_fx",
+                ]},
+                "status": {"type": "string", "enum": ["active", "candidate"], "default": "candidate"},
+                "relevance_r": {"type": "number", "minimum": 0, "maximum": 1, "description": "How strongly this aspect should drive the subject's price/insights (0=irrelevant, 1=primary driver)"},
+                "diversity_bonus": {"type": "number", "minimum": 0, "maximum": 1, "description": "How orthogonal this aspect is to others already tracked (0=fully redundant, 1=fully orthogonal)"},
+                "rationale": {"type": "string", "description": "1-2 sentences why this aspect matters for this subject"},
+                "induction_chain": {
+                    "type": "array",
+                    "minItems": 2,
+                    "description": "Numbered causal chain. Each step is {step:N, cause|effect|fact: '...'}",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "step": {"type": "integer"},
+                            "cause": {"type": "string"},
+                            "effect": {"type": "string"},
+                            "fact": {"type": "string"},
+                        },
+                    },
+                },
+                "example_events": {
+                    "type": "array",
+                    "minItems": 1,
+                    "description": "Historical precedents. Each event must have a real date and concrete impact, not vague generalities. Mark verified=false unless you've seen the data first-hand.",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "date": {"type": "string", "description": "ISO date or YYYY-MM or YYYY"},
+                            "event": {"type": "string"},
+                            "observed_impact": {"type": "string"},
+                            "source_url": {"type": "string"},
+                            "verified": {"type": "boolean", "default": False},
+                        },
+                        "required": ["date", "event"],
+                    },
+                },
+            },
+            "required": ["subject_code", "aspect_code", "relevance_r", "rationale",
+                         "induction_chain", "example_events"],
+        },
+    },
 ]
 
 
@@ -179,6 +239,24 @@ async def call_tool(name: str, args: dict, ctx: dict) -> dict:
                 "role": args.get("role", "driver"),
             }
             r = await client.post(GATEWAY_URL + f"/api/v2/goals/{goal_id}/indicators", json=body, headers=_service_headers(ctx))
+            r.raise_for_status()
+            return r.json()
+
+        if name == "propose_aspect":
+            subject = args["subject_code"]
+            body = {
+                "aspect_code": args["aspect_code"],
+                "status": args.get("status", "candidate"),
+                "relevance_r": args["relevance_r"],
+                "diversity_bonus": args.get("diversity_bonus"),
+                "rationale": args["rationale"],
+                "induction_chain": args["induction_chain"],
+                "example_events": args["example_events"],
+            }
+            r = await client.post(
+                GATEWAY_URL + f"/api/v2/subjects/{subject}/aspects/propose",
+                json=body, headers=_service_headers(ctx),
+            )
             r.raise_for_status()
             return r.json()
 

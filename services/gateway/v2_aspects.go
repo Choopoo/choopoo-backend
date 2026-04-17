@@ -123,6 +123,90 @@ func handleV2SubjectAspects(w http.ResponseWriter, r *http.Request) {
 	writeJSON(w, http.StatusOK, out)
 }
 
+// POST /api/v2/subjects/:code/aspects/propose
+//
+// Called by copilot's `propose_aspect` tool — Claude has analysed the subject
+// and produced one aspect proposal with rationale + induction chain + example
+// events. We resolve aspect_code → id and upsert subject_aspect_score.
+// evidence_verified stays false until the resolver matches example_events to
+// real history.
+func handleV2ProposeSubjectAspect(w http.ResponseWriter, r *http.Request) {
+	tx := TxFromContext(r.Context())
+	subjectCode := chi.URLParam(r, "code")
+	if subjectCode == "" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "subject code required"})
+		return
+	}
+	var req struct {
+		AspectCode     string          `json:"aspect_code"`
+		Status         string          `json:"status,omitempty"`
+		RelevanceR     float64         `json:"relevance_r"`
+		DiversityBonus *float64        `json:"diversity_bonus,omitempty"`
+		Rationale      string          `json:"rationale"`
+		InductionChain json.RawMessage `json:"induction_chain"`
+		ExampleEvents  json.RawMessage `json:"example_events"`
+	}
+	if err := decodeJSON(r, &req); err != nil || req.AspectCode == "" {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "aspect_code required"})
+		return
+	}
+	status := req.Status
+	if status != "active" && status != "candidate" {
+		status = "candidate"
+	}
+
+	var aspectID int64
+	if err := tx.QueryRowContext(r.Context(),
+		`SELECT id FROM catalog_signal_aspect WHERE code = $1`, req.AspectCode).Scan(&aspectID); err != nil {
+		writeJSON(w, http.StatusBadRequest, map[string]string{"error": "unknown aspect_code: " + req.AspectCode})
+		return
+	}
+
+	div := 0.5
+	if req.DiversityBonus != nil {
+		div = *req.DiversityBonus
+	}
+	score := req.RelevanceR * div
+
+	chainJSON := string(req.InductionChain)
+	if chainJSON == "" {
+		chainJSON = "null"
+	}
+	eventsJSON := string(req.ExampleEvents)
+	if eventsJSON == "" {
+		eventsJSON = "[]"
+	}
+
+	if _, err := tx.ExecContext(r.Context(),
+		`INSERT INTO subject_aspect_score (
+		   subject_code, aspect_id, status,
+		   relevance_r, diversity_bonus, score,
+		   relevance_rationale, induction_chain, example_events,
+		   evidence_verified, last_scored_at
+		 ) VALUES ($1, $2, $3, $4, $5, $6, $7, $8::jsonb, $9::jsonb, false, NOW())
+		 ON CONFLICT (subject_code, aspect_id) DO UPDATE SET
+		   status = EXCLUDED.status,
+		   relevance_r = EXCLUDED.relevance_r,
+		   diversity_bonus = EXCLUDED.diversity_bonus,
+		   score = EXCLUDED.score,
+		   relevance_rationale = EXCLUDED.relevance_rationale,
+		   induction_chain = EXCLUDED.induction_chain,
+		   example_events = EXCLUDED.example_events,
+		   last_scored_at = NOW()`,
+		subjectCode, aspectID, status, req.RelevanceR, div, score,
+		req.Rationale, chainJSON, eventsJSON,
+	); err != nil {
+		writeJSON(w, http.StatusInternalServerError, map[string]string{"error": errMsg(err)})
+		return
+	}
+	writeJSON(w, http.StatusOK, map[string]interface{}{
+		"subject_code": subjectCode,
+		"aspect_code":  req.AspectCode,
+		"status":       status,
+		"score":        score,
+	})
+}
+
 // POST /api/v2/subjects/:code/aspects/:aspectId  body: {"active": bool}
 // Toggles an aspect between active and candidate.
 func handleV2ToggleSubjectAspect(w http.ResponseWriter, r *http.Request) {
