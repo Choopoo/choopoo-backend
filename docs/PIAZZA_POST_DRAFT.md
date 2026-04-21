@@ -1,65 +1,49 @@
-# Piazza "Final Projects" post — Choopoo TDI Price Intelligence Platform
+# Final Project: Choopoo — TDI Price Intelligence Platform
 
-**Status: DRAFT.** Wait for at least 2–3 classmate Final-Project posts to land before posting so the §"Three most-similar projects" section has real targets. Replace the `TODO:` placeholders with the actual classmates' post titles + authors + 1–2 sentences each.
+**Team member:** Kaige Zheng (solo)
 
-> Posting category on Piazza: **Final Projects**
-> Tag: **community-contribution**
+**Video:** *[insert YouTube/Loom unlisted link after upload]*
 
----
+**Code:** https://github.com/Choopoo/choopoo-backend (siblings: [choopoo-frontend](https://github.com/Choopoo/choopoo-frontend), [choopoo-infra](https://github.com/Choopoo/choopoo-infra)). Coursework foundation (HW1–HW10): https://github.com/kdeisgn/NU-Distributed-System-Design-CS6650-2025Fall
 
-## Subject line
+**Experiments Report:** https://github.com/Choopoo/choopoo-backend/blob/submission/cs6650-final/docs/EXPERIMENTS_REPORT.pdf
 
-`[Final Project] Choopoo — bilingual TDI price-intelligence trading desk on a distributed pipeline (8 services, 4 experiments, ECS Fargate)`
-
----
-
-## Body
-
-Hi all — solo final project. Choopoo is a bilingual trading desk for Chinese polyurethane SME owners, built on top of a horizontally-scalable, fault-tolerant distributed pipeline. The course experiments measure whether the backend is what makes the daily-use product feasible at SME scale.
-
-**🎥 Video** — *[insert YouTube/Loom unlisted link after upload]*
-
-**📄 Experiments report (5-page PDF)** — *[insert link to EXPERIMENTS_REPORT.pdf in the choopoo-backend repo]*
-
-**💻 Code**
-- Backend (8 services, Go + Python): https://github.com/Choopoo/choopoo-backend
-- Frontend (React 19 + Vite + Tailwind v4 + react-i18next): https://github.com/Choopoo/choopoo-frontend
-- Infra (Docker Compose + Terraform for ECS Fargate): https://github.com/Choopoo/choopoo-infra
-- Coursework + final-project foundation history (HW1–HW10): https://github.com/kdeisgn/NU-Distributed-System-Design-CS6650-2025Fall (`hw9/` and earlier)
-
-**📐 Architecture in one paragraph.** Three planes — Ingest (producer → consumer → summariser, all async via Kafka), Enrich (event-extractor + forecaster + workflow saga), Serve (gateway + copilot, sync HTTP behind ALB). Five Kafka topics (`crawl-jobs`, `page-metadata`, `analysis-results`, `goal.created.v1`, `autopilot.step.v1`). Transactional outbox at the gateway means goal-creation is atomic from the user's perspective even though the saga runs for minutes. Postgres row-level security makes onboarding the next SME tenant a one-row insert, not a code change.
-
-**🧪 Four experiments.**
-1. **Producer horizontal scaling** — flat at AWS 47 rps regardless of replica count → gateway is the real ceiling, not producer count. Useful negative result that saves money.
-2. **Consumer scaling + bottleneck migration** — near-linear 23 → 96 → 213 rps as concurrency × consumer-count grows together; p95 stays bounded.
-3. **Resilience pattern comparison** — backoff vs. backpressure vs. circuit breaker under 30 % AI-API failure. All three absorb failure with zero gateway errors; CB has highest p95/p99 (half-open probe cost).
-4. **Fault tolerance & recovery** — `docker kill` producer/consumer/redis under sustained load. Zero gateway errors across all kills; recovery 6 s (Redis) → 11 s (producer) → 31 s (consumer, due to Kafka group rebalance).
-
-**🔑 Key takeaways.** (a) The right scaling knob is the consumer tier, not the producer tier. (b) Kafka decoupling pays for itself: every fault test posts zero gateway errors. (c) Resilience patterns are not interchangeable — pick by failure profile. (d) Local Docker results lie in predictable directions; always re-run on the target environment.
+**One-paragraph summary.** Choopoo is a bilingual (en + zh-CN) TDI price-intelligence trading desk for Chinese polyurethane SME owners, built on a horizontally-scalable, fault-tolerant distributed pipeline. Three planes (Ingest · Enrich · Serve) composed of eight services coordinate through five Kafka topics with a transactional outbox at the gateway so user-facing goal creation is atomic even though the downstream saga runs for minutes. Four experiments quantify producer scaling, consumer scaling + bottleneck migration, resilience-pattern comparison under AI-API failure, and fault-tolerance recovery under single-service kill.
 
 ---
 
-## Three most-similar Final Projects
+## Post 1 — Scalable Notification System (Weihang Zhang)
 
-**1. [TODO: classmate post title + author]**
-- *Similarities:* TODO — e.g., "also event-driven with a broker between stages"
-- *Differences:* TODO — e.g., "uses SQS instead of Kafka, so partition-based parallelism is replaced by visibility-timeout-based delivery semantics"
-- *What I learned from it:* TODO — one specific thing you'd borrow
+**link:** *[insert Piazza post URL]* — report PDF: [github.com/weihang-z/.../experiment report.pdf](https://github.com/weihang-z/CS6650-Scalable-Distributed-Systems/blob/main/final%20project-notification%20system/scalable-notification-system/experiment%20report.pdf)
 
-**2. [TODO: classmate post title + author]**
-- *Similarities:* TODO
-- *Differences:* TODO
-- *What I learned from it:* TODO
+**Similarity:** This is the project architecturally closest to Choopoo. Both use the **transactional outbox pattern** to make the user-facing accept atomic — their ingress persists both the `notifications` row and a `NotificationRequested` outbox row in one DB transaction; Choopoo's gateway persists both the `goals` row and a `domain_events` row in one transaction and drains the outbox to Kafka via an in-process relay. Both pipelines then fan out across Kafka into specialised worker services (their EMAIL / INAPP workers; Choopoo's producer / consumer / summariser plus enrich-plane event-extractor / forecaster / workflow). Both run on ECS Fargate with RDS as the authoritative store, and both experiment designs deliberately hold capacity fixed and sweep replica count to expose the real scaling ceiling. Most interestingly, both studies surface the same kind of negative result: the downstream worker tier is **not** the first bottleneck — the synchronous ingress + DB accept path is. Their Experiment A shows ingress CPU at 93–100 % even when email workers have headroom; Choopoo's Experiment 1 shows producer throughput plateauing at ~5 replicas because the single-instance gateway saturates first.
 
-**3. [TODO: classmate post title + author]**
-- *Similarities:* TODO
-- *Differences:* TODO
-- *What I learned from it:* TODO
+**Difference:** Their workload is transactional notifications (high request rate, small 256-byte payloads, async delivery to email/in-app channels); Choopoo's workload is web-crawl + LLM analysis (lower request rate, larger payloads, heavier downstream cost per unit of work — an LLM call dominates the back-end wall-clock, not a queue hop). They split by notification *channel* (EMAIL vs INAPP as separate topics and ECS services); Choopoo splits by pipeline *stage* (ingest vs enrich vs serve). They did not evaluate resilience patterns against downstream-dependency failure — their failure-isolation experiment checks whether slow email processing harms in-app latency — whereas Choopoo's Experiment 3 compares backoff / backpressure / circuit-breaker head-to-head against a mock AI API with 30 % failure rate, which is the shape of failure you actually hit when a paid LLM provider rate-limits you.
 
 ---
 
-## Footer
+## Post 2 — Workout Video Processing Platform (Yuang Chen)
 
-Thanks to Prof. Ian Gorton + the TAs for a course that genuinely changed how I think about systems. Happy to chat — comments here or DM works.
+**link:** *[insert Piazza post URL]* — report PDF: [drive.google.com/file/d/1LwMtvlGW4EUjWWvgHS3LhcUXIy4XRBrn](https://drive.google.com/file/d/1LwMtvlGW4EUjWWvgHS3LhcUXIy4XRBrn/view)
 
-— Kaige Zheng (kaigezhengzz@gmail.com)
+**Similarity:** Both are async "ingest → transform → persist" pipelines where the user-facing surface returns quickly (presigned S3 URL for them, `202 Accepted` for Choopoo) and background workers drain a queue while the client moves on. Both measure the same core metric family: throughput, queue wait p50/p95/p99, drain time, and end-to-end completion time swept across worker replica counts 1/2/4/8. Both run the worker fleet on ECS Fargate and both use managed-broker-style decoupling (Redis list queue for them, Kafka topics for Choopoo) so worker-to-worker coordination is the broker's job, not the application's. Their Experiment 3 (worker termination and recovery) is the direct analog of Choopoo's Experiment 4 — both kill a running worker mid-flight and verify the pipeline heals cleanly without lost work or operator intervention. Both also share a key limitation: the test run is small enough (100 jobs for them, 300 requests for Choopoo) that steady-state saturation effects are under-characterised and would need a longer run to fully expose.
+
+**Difference:** Their per-job service time is long and roughly deterministic (~5.6 s per job, dominated by ffprobe + simulated analysis), so queue wait dominates total latency and worker scale-out produces clean near-linear gains (0.129 → 0.823 jobs/s from 1 → 8 workers). Choopoo's pipeline has a much more variable per-unit cost because the summariser calls an LLM, which is why Choopoo's Experiment 3 studies resilience-pattern tradeoffs — a concern their workload shape does not surface the same way. They separate queue coordination (Redis) from durable state (DynamoDB); Choopoo unifies both concerns in Postgres (with RLS as the multi-tenancy primitive) and uses Redis only as a dedupe cache-aside. Finally, their system is single-tenant — Choopoo is multi-tenant-by-design, which adds a SaaS-onboarding consideration (next customer = one row in `orgs`) that their study does not address.
+
+---
+
+## Post 3 — Distributed Financial Transaction Processor (Sampath Pranay Beela, Rahul Chinya Jagadeesha)
+
+**link:** *[insert Piazza post URL]* — report PDF: [github.com/beelapranay/.../experiments-report.pdf](https://github.com/beelapranay/CS6650-BSDS/blob/main/project/transaction-processor/load-tests/experiments-report.pdf)
+
+**Similarity:** Both systems deliberately put a broker between the synchronous user-facing API and the async worker fleet (SQS for them, Kafka for Choopoo) so client-visible accept latency stays bounded even when downstream work is slow or the worker tier is heavily contended. Both run on ECS Fargate behind an ALB in us-west-2 and both run their experiments against the *deployed* AWS stack — no local DynamoDB, no mocked SQS, no substitutes — which is the same methodological stance Choopoo's `experiments/aws/` directory takes against `experiments/` (local Docker). Both sweep replica count (their `{1, 2, 4}`, Choopoo's `{2, 5, 10}`) across identical scenarios to quantify horizontal scalability. And both include a crash-safety experiment that kills a worker mid-commit under sustained load and verifies the invariant / accept path survives the kill — their balance verifier after every run is the same shape as Choopoo's "zero gateway errors across producer / consumer / redis kills" claim in Experiment 4.
+
+**Difference:** Their system's central concern is *correctness under contention* — every experiment guards the invariant that the sum of balances across 101 accounts must remain $1,010,000, and Experiment 3 specifically compares optimistic vs pessimistic locking head-to-head against the same hot-account workload. Choopoo does not have a financial-style correctness invariant, but has an *availability* concern (the SME owner's daily trading desk cannot go dark when Claude rate-limits), which is what Choopoo's resilience-pattern experiment is built around. They use DynamoDB `TransactWriteItems` for atomicity at the write layer; Choopoo uses Postgres transactions + a transactional outbox to straddle the SQL/Kafka boundary. Their workload is very bursty and contended (a single hot account forces every concurrent transfer into a conditional-check-conflict candidate); Choopoo's is steadier and I/O- + API-bound. Finally, their tail-latency cost is explicit in the report (p95 = 530 ms at 115 req/s is the price of optimistic retries under contention); I should apply the same scrutiny to Choopoo's Experiment 4 "zero errors" claim — what did tail latency actually look like during the 31-second consumer-rebalance recovery window?
+
+---
+
+## What I Learned from the Other Projects
+
+Reading these three reports changed how I see my own results, not just how I'd describe them in a presentation. Weihang's notification system showed me that the transactional-outbox pattern is becoming the default primitive for any "click = atomic from the user's point of view" system that also needs eventual downstream processing — and that two independent teams running transactional-outbox systems on ECS both discovered the same kind of negative result (ingress + DB is the bottleneck, not the worker tier). I now read my own Experiment 1 plateau as the exact same story rather than as a Choopoo-specific quirk. Yuang's workout video platform taught me that I've been conflating queue wait and processing time — they report p50/p95 of queue wait separately from per-job processing time, which cleanly exposes where the next unit of scaling investment should go. Choopoo's `load_test.py` measures end-to-end accept latency but not queue-side lag, and that gap is the honest answer to why Experiment 4's recovery numbers are a proxy, not a direct measurement. Beela and Rahul's transaction processor reminded me that "no HTTP errors under contention" is never a complete answer — their p95 of 530 ms at 115 req/s tells a richer story than the aggregate "zero failures" line, and I should be equally careful reporting Choopoo's zero-error fault-tolerance numbers without also quoting tail latency through the recovery window.
+
+The common thread across all three is that asynchronous pipelines look healthy from the outside and hide their real bottleneck from naïve observers. Each team had to design experiments specifically to surface it: Weihang through fixed-replica load sweeps, Yuang through queue-depth and drain-time metrics, Beela through counter-diffing against deployed CloudWatch Logs. Choopoo's contribution to that conversation is the resilience-pattern comparison (backoff vs backpressure vs circuit breaker against a controlled-failure dependency), but the other three showed me that the experiment I most need to add next is Kafka consumer-lag instrumentation — without it, my fault-tolerance story is a proxy story, and the other three reports prove the community has moved past proxies.
